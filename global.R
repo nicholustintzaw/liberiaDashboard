@@ -34,6 +34,8 @@ if(!require(ggmap)) install.packages("ggmap")
 if(!require(DT)) install.packages("DT")
 if(!require(zscorer)) install.packages("zscorer")
 if(!require(RColorBrewer)) install.packages("RColorBrewer")
+if(!require(plotly)) install.packages("plotly")
+if(!require(stringr)) install.packages("stringr")
 
 if(!require(liberia)) install_github("validmeasures/liberia")
 if(!require(liberiaData)) install_github("validmeasures/liberiaData")
@@ -71,4 +73,22 @@ gbLat1 <- bbox(grandBassa)[2, 1]
 gbLng2 <- bbox(grandBassa)[1, 2]
 gbLat2 <- bbox(grandBassa)[2, 2]
 
+################################################################################
+
+themeSettings <- theme_bw() + 
+  theme(panel.border = element_rect(colour = "#993300",
+                                    size = 0.5),
+        panel.grid.major = element_line(linetype = 1, 
+                                        size = 0.2, 
+                                        colour = "gray90"),
+        panel.grid.minor = element_line(linetype = 0),
+        strip.background = element_rect(colour = "#993300",
+                                        fill = "#993300"),
+        strip.text = element_text(colour = "white"),
+        legend.key = element_rect(linetype = 0),
+        axis.text.x = element_text(size = 8),
+        axis.text.y = element_text(size = 8),
+        #axis.title.x = element_text(colour = "gray50"),
+        #axis.title.y = element_text(colour = "gray50"),
+        axis.ticks = element_line(colour = "#993300", size = 0.5))
 

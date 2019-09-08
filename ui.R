@@ -64,20 +64,18 @@ ui <- dashboardPage(
               label = "Select round",
               choices = c("Round 1" = "r1",
                           "Round 2" = "r2"),
-              selected = "r1"
+              selected = "r2"
             ),
-            radioButtons(inputId = "indicators",
-              label = "Select indicators",
-              choices = c("Iron-folic acid coverage" = "ifa",
-                          "IYCF counselling coverage" = "iycf",
-                          "Micronutrient powder coverage" = "mnp",
-                          "Vitamin A coverage" = "vit",
-                          "Nutrition screening coverage" = "screen",
-                          "Stunting prevalence" = "stunt",
-                          "Underweight prevalence" = "underweight",
-                          "Wasting (WHZ)" = "whz",
-                          "Wasting (MUAC)" = "muac"),
-              selected = "ifa"
+            selectInput(inputId = "varLabel",
+              label = "Select indicator",
+              choices = c("At least one ANC visit" = "ifa1",
+                          "Know/heard about iron-folic acid" = "ifa2",
+                          "Received/purchased iron-folic acid" = "ifa3",
+                          "Consumed iron-folic acid" = "ifa4",
+                          "Mean number of days of iron-folic acid consumption" = "ifa5",
+                          "Consumed iron-folic acid for at least 90 days" = "ifa6",
+                          "Consumed iron-folic acid for 180 days" = "ifa7"),
+              selected = "ifa1"
             )
           ),
           box(title = "Map",
@@ -94,29 +92,67 @@ ui <- dashboardPage(
               value = "ifaGM",
               fluidRow(
                 box(title = "Overall estimates",
-                  status = "danger",
-                  solidHeader = TRUE
+                  status = "warning",
+                  solidHeader = TRUE,
+                  plotlyOutput(outputId = "ifaPlot")
                 ),
                 box(title = "Reasons for non-coverage",
-                  status = "danger",
-                  solidHeader = TRUE
+                  status = "warning",
+                  solidHeader = TRUE,
+                  plotlyOutput(outputId = "ifaReasons")
                 )
               )
             ),
             tabPanel(title = "IYCF",
-              value = "iycfGM"
+              value = "iycfGM",
+              fluidRow(
+                box(title = "Overall estimates",
+                  status = "warning",
+                  solidHeader = TRUE,
+                  plotlyOutput(outputId = "icfPlot")
+                ),
+                box(title = "Reasons for non-coverage",
+                  status = "warning",
+                  solidHeader = TRUE,
+                  plotlyOutput(outputId = "icfReasons")
+                )
+              )
             ),
             tabPanel(title = "MNP",
-              value = "mnpGM"
+              value = "mnpGM",
+              fluidRow(
+                box(title = "Overall estimates",
+                  status = "warning",
+                  solidHeader = TRUE,
+                  plotlyOutput(outputId = "mnpPlot")
+                ),
+                box(title = "Reasons for non-coverage",
+                  status = "warning",
+                  solidHeader = TRUE,
+                  plotlyOutput(outputId = "mnpReasons")
+                )
+              )
             ),
             tabPanel(title = "Vitamin A",
-              value = "vitGM"
+              value = "vitGM",
+              fluidRow(
+                box(title = "Overall estimates",
+                  status = "warning",
+                  solidHeader = TRUE,
+                  plotlyOutput(outputId = "vitPlot")
+                ),
+                box(title = "Reasons for non-coverage",
+                  status = "warning",
+                  solidHeader = TRUE,
+                  plotlyOutput(outputId = "vitReasons")
+                )
+              )
             ),
             tabPanel(title = "Nutrition Screening",
               value = "screenGM"
             ),
             tabPanel(title = "IMAM",
-              value = "imamGM"
+              value = "cmamGM"
             ),
             tabPanel(title = "Stunting",
               value = "stuntGM"
