@@ -76,14 +76,14 @@ server <- function(input, output, session) {
     }
     ##
     if(input$gm == "whzGM") {
-      indicatorChoices <- c("gam.whz", "mam.whz", "mam.whz")
+      indicatorChoices <- c("gam.whz", "mam.whz", "sam.whz")
       names(indicatorChoices) <- c("Global wasting prevalence by WHZ", 
                                    "Moderate wasting prevalence by WHZ",
                                    "Severe wasting prevalence by WHZ")
     }
     ##
     if(input$gm == "muacGM") {
-      indicatorChoices <- c("gam.muac", "mam.muac", "mam.muac")
+      indicatorChoices <- c("gam.muac", "mam.muac", "sam.muac")
       names(indicatorChoices) <- c("Global wasting prevalence by MUAC", 
                                    "Moderate wasting prevalence by MUAC",
                                    "Severe wasting prevalence by MUAC")
@@ -114,8 +114,63 @@ server <- function(input, output, session) {
   ##
   observe({
     ##
-    pal <- colorNumeric(palette = brewer.pal(n = 10, name = "RdYlGn"),
-                        domain = c(0,1))
+    values <- c(0,1)
+    palette <- brewer.pal(n = 10, name = "RdYlGn")
+    ##
+    if(input$varLabel == "global.haz") {
+      values <- c(0, max(anthroInt$global.haz))
+      palette <- rev(brewer.pal(n = 10, name = "RdYlGn"))
+    }
+    if(input$varLabel == "moderate.haz") {
+      values <- c(0, max(anthroInt$moderate.haz))
+      palette <- rev(brewer.pal(n = 10, name = "RdYlGn"))
+    }
+    if(input$varLabel == "severe.haz") {
+      values <- c(0, max(anthroInt$severe.haz))
+      palette <- rev(brewer.pal(n = 10, name = "RdYlGn"))
+    }
+    if(input$varLabel == "global.waz") {
+      values <- c(0, max(anthroInt$global.waz))
+      palette <- rev(brewer.pal(n = 10, name = "RdYlGn"))
+    }
+    if(input$varLabel == "moderate.waz") {
+      values <- c(0, max(anthroInt$moderate.waz))
+      palette <- rev(brewer.pal(n = 10, name = "RdYlGn"))
+    }
+    if(input$varLabel == "severe.waz") {
+      values <- c(0, max(anthroInt$severe.waz))
+      palette <- rev(brewer.pal(n = 10, name = "RdYlGn"))
+    }
+    if(input$varLabel == "gam.whz") {
+      values <- c(0, max(anthroInt$gam.whz))
+      palette <- rev(brewer.pal(n = 10, name = "RdYlGn"))
+    }
+    if(input$varLabel == "mam.whz") {
+      values <- c(0, max(anthroInt$mam.whz))
+      palette <- rev(brewer.pal(n = 10, name = "RdYlGn"))
+    }
+    if(input$varLabel == "sam.whz") {
+      values <- c(0, max(anthroInt$sam.whz))
+      palette <- rev(brewer.pal(n = 10, name = "RdYlGn"))
+    }
+    if(input$varLabel == "gam.muac") {
+      values <- c(0, max(anthroInt$gam.muac))
+      palette <- rev(brewer.pal(n = 10, name = "RdYlGn"))
+    }
+    if(input$varLabel == "mam.muac") {
+      values <- c(0, max(anthroInt$mam.muac))
+      palette <- rev(brewer.pal(n = 10, name = "RdYlGn"))
+    }
+    if(input$varLabel == "sam.muac") {
+      values <- c(0, max(anthroInt$sam.muac))
+      palette <- rev(brewer.pal(n = 10, name = "RdYlGn"))
+    }
+    if(input$varLabel == "oedema") {
+      values <- c(0, max(anthroInt$oedema))
+      palette <- rev(brewer.pal(n = 10, name = "RdYlGn"))
+    }
+    ##
+    pal <- colorNumeric(palette = palette, domain = values)
     ##
     leafletProxy("mapGM") %>%
       clearShapes() %>%
@@ -141,7 +196,7 @@ server <- function(input, output, session) {
           direction = "auto"))%>%
       addLegend(pal = pal, 
                 opacity = 0.7,
-                values = c(0,1),
+                values = values,
                 position = "bottomleft", 
                 labFormat = labelFormat(suffix = "%", transform = function(x) x * 100),
                 layerId = "legend")
