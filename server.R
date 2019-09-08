@@ -260,7 +260,8 @@ server <- function(input, output, session) {
     })
     ##
     output$mnpReasons <- renderPlotly({
-      x <- mnpBoot[mnpBoot$varLabel %in% c(paste("mnp2", letters[1:4], sep = "")), ]
+      x <- mnpBoot[mnpBoot$varLabel %in% c(paste("mnp2", letters[1:4], sep = ""),
+                                           paste("mnp3", letters[1:10], sep = "")), ]
       ##
       x <- x[x$estimate != 0, ]
       ##
