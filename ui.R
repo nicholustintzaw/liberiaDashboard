@@ -149,10 +149,28 @@ ui <- dashboardPage(
               )
             ),
             tabPanel(title = "Nutrition Screening",
-              value = "screenGM"
+              value = "screenGM",
+              fluidRow(
+                box(title = "Overall estimates",
+                  status = "warning",
+                  solidHeader = TRUE,
+                  plotlyOutput(outputId = "screenPlot")
+                )
+              )
             ),
             tabPanel(title = "IMAM",
-              value = "cmamGM"
+              value = "cmamGM",
+              fluidRow(
+                box(title = "Overall estimates",
+                  status = "warning",
+                  solidHeader = TRUE,
+                  plotlyOutput(outputId = "cmamPlot")
+                ),
+                box(title = "Reasons for non-coverage",
+                  status = "warning",
+                  solidHeader = TRUE
+                )
+              )
             ),
             tabPanel(title = "Stunting",
               value = "stuntGM"

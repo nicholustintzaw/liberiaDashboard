@@ -186,22 +186,7 @@ server <- function(input, output, session) {
       ##
                                            paste("ifa4", letters[1:4], sep = "")), ]
       ##
-      #x$varNames <- factor(x$varNames, 
-      #                     levels = c("Health centre ran out",
-      #                                "Took too long to get tablets",
-      #                                "Did not go to hospital",
-      #                                "Didn't get any iron-folic acid",
-      #                                "Received but did not take",
-      #                                "Not interested"))
-      ##
-      #x <- x[x$estimate != 0, ]
-      ##
-      xlabs <- c("Health centre\nran out",
-                 "Took too long\ntoget tablets",
-                 "Did not go\nto hospital",
-                 "Didn't get\nany iFA",
-                 "Recieved but\ndid not take",
-                 "Not\ninterested")
+      x <- x[x$estimate != 0, ]
       ##
       ggplot(data = x, aes(x = reorder(varNames, -estimate), y = estimate * 100)) +
         geom_col(color = "#993300", fill = "#993300", alpha = 0.7) +
@@ -227,7 +212,7 @@ server <- function(input, output, session) {
                                       "Attended IYCF counselling"))
       ##
       ggplot(data = x, aes(x = varNames, y = estimate * 100)) + 
-        geom_col(color = "#993300", fill = "#993300", alpha = 0.7) + 
+        geom_col(color = "#993300", fill = "#993300", alpha = 0.7, width = 0.3) + 
         scale_y_continuous(breaks = seq(from = 0, to = 100, by = 10),
                            limits = c(0, 100)) +
         scale_x_discrete(labels = xlabs) +
@@ -239,24 +224,7 @@ server <- function(input, output, session) {
     output$icfReasons <- renderPlotly({
       x <- iycfBoot[iycfBoot$varLabel %in% c(paste("icf2", letters[1:7], sep = "")), ]
       ##
-      #x$varNames <- factor(x$varNames, 
-      #                     levels = c("Timing  not convenient",
-      #                                "Not interested",
-      #                                "Do not trust counsellor",
-      #                                "Don't think I need it",
-      #                                "Did not go to hospital",
-      #                                "No one told me about it/not invited",
-      #                                "No time"))
-      ##
-      #x <- x[x$estimate != 0, ]
-      ##
-      xlabs <- c("Timing\nnot\nconvenient",
-                 "Not\ninterested",
-                 "Do not\ntrust\ncounsellor",
-                 "Don't think\nI need it",
-                 "Did not\ngo to\nhospital",
-                 "No one\ntold me\nabout it/\nnot invited",
-                 "No time")
+      x <- x[x$estimate != 0, ]
       ##
       ggplot(data = x, aes(x = reorder(varNames, -estimate), y = estimate * 100)) +
         geom_col(color = "#993300", fill = "#993300", alpha = 0.7) +
@@ -282,7 +250,7 @@ server <- function(input, output, session) {
                                       "Received/purchased micronutrient powder"))
       ##
       ggplot(data = x, aes(x = varNames, y = estimate * 100)) + 
-        geom_col(color = "#993300", fill = "#993300", alpha = 0.7) + 
+        geom_col(color = "#993300", fill = "#993300", alpha = 0.7, width = 0.3) + 
         scale_y_continuous(breaks = seq(from = 0, to = 100, by = 10),
                            limits = c(0, 100)) +
         scale_x_discrete(labels = xlabs) +
@@ -294,24 +262,7 @@ server <- function(input, output, session) {
     output$mnpReasons <- renderPlotly({
       x <- mnpBoot[mnpBoot$varLabel %in% c(paste("mnp2", letters[1:4], sep = "")), ]
       ##
-      #x$varNames <- factor(x$varNames, 
-      #                     levels = c("Timing  not convenient",
-      #                                "Not interested",
-      #                                "Do not trust counsellor",
-      #                                "Don't think I need it",
-      #                                "Did not go to hospital",
-      #                                "No one told me about it/not invited",
-      #                                "No time"))
-      ##
-      #x <- x[x$estimate != 0, ]
-      ##
-      xlabs <- c("Timing\nnot\nconvenient",
-                 "Not\ninterested",
-                 "Do not\ntrust\ncounsellor",
-                 "Don't think\nI need it",
-                 "Did not\ngo to\nhospital",
-                 "No one\ntold me\nabout it/\nnot invited",
-                 "No time")
+      x <- x[x$estimate != 0, ]
       ##
       ggplot(data = x, aes(x = reorder(varNames, -estimate), y = estimate * 100)) +
         geom_col(color = "#993300", fill = "#993300", alpha = 0.7) +
@@ -332,7 +283,7 @@ server <- function(input, output, session) {
       xlabs <- "Received\nvitamin A\nin the\npast 6 months"
       ##
       ggplot(data = x, aes(x = varNames, y = estimate * 100)) + 
-        geom_col(color = "#993300", fill = "#993300", alpha = 0.7) + 
+        geom_col(color = "#993300", fill = "#993300", alpha = 0.7, width = 0.3) + 
         scale_y_continuous(breaks = seq(from = 0, to = 100, by = 10),
                            limits = c(0, 100)) +
         scale_x_discrete(labels = xlabs) +
@@ -344,24 +295,7 @@ server <- function(input, output, session) {
     output$vitReasons <- renderPlotly({
       x <- vitBoot[vitBoot$varLabel %in% c(paste("vit1", letters[1:10], sep = "")), ]
       ##
-      #x$varNames <- factor(x$varNames, 
-      #                     levels = c("Timing  not convenient",
-      #                                "Not interested",
-      #                                "Do not trust counsellor",
-      #                                "Don't think I need it",
-      #                                "Did not go to hospital",
-      #                                "No one told me about it/not invited",
-      #                                "No time"))
-      ##
-      #x <- x[x$estimate != 0, ]
-      ##
-      xlabs <- c("Timing\nnot\nconvenient",
-                 "Not\ninterested",
-                 "Do not\ntrust\ncounsellor",
-                 "Don't think\nI need it",
-                 "Did not\ngo to\nhospital",
-                 "No one\ntold me\nabout it/\nnot invited",
-                 "No time")
+      x <- x[x$estimate != 0, ]
       ##
       ggplot(data = x, aes(x = reorder(varNames, -estimate), y = estimate * 100)) +
         geom_col(color = "#993300", fill = "#993300", alpha = 0.7) +
@@ -372,5 +306,70 @@ server <- function(input, output, session) {
         coord_flip() +
         themeSettings
     })
+  })
+  ##
+  observeEvent(input$round == "r2" & input$gm == "screenGM", {
+    output$screenPlot <- renderPlotly({
+      ##
+      x <- screenBoot
+      ##
+      xlabs <- c("Child\nheight\nmeasured\nin the\npast month",
+                 "Child\nMUAC\nmeasured\nin the\npast month",
+                 "Child\nchecked\nfor\noedema\nin the\npast month",
+                 "Child\nweight\nmeasured\nin the\npast month")
+      ##
+      x$varNames <- factor(x = x$varNames, 
+                           levels = c("Child height measured in the past month",
+                                      "Child MUAC measured in the past month",
+                                      "Child checked for oedema in the past month",
+                                      "Child weight measured in the past month"))
+      ##
+      ggplot(data = x, aes(x = varNames, y = estimate * 100)) + 
+        geom_col(color = "#993300", fill = "#993300", alpha = 0.7) + 
+        scale_y_continuous(breaks = seq(from = 0, to = 100, by = 10),
+                           limits = c(0, 100)) +
+        scale_x_discrete(labels = xlabs) +
+        labs(x = "", y = "%") +
+        #coord_flip() +
+        themeSettings
+    })
+  })  
+  ##
+  observeEvent(input$round == "r2" & input$gm == "cmamGM", {
+    output$cmamPlot <- renderPlotly({
+      ##
+      x <- cmamEst
+      ##
+      xlabs <- c("Case-finding\neffectiveness",
+                 "Treatment\ncoverage")
+      ##
+      x$varNames <- factor(x = x$varNames, 
+                           levels = c("Case-finding effectiveness",
+                                      "Treatment coverage"))
+      ##
+      ggplot(data = x, aes(x = varNames, y = estimate * 100)) + 
+        geom_col(color = "#993300", fill = "#993300", alpha = 0.7, width = 0.3) + 
+        scale_y_continuous(breaks = seq(from = 0, to = 100, by = 10),
+                           limits = c(0, 100)) +
+        scale_x_discrete(labels = xlabs) +
+        labs(x = "", y = "%") +
+        #coord_flip() +
+        themeSettings
+    })
+    ##
+    #output$cmamReasons <- renderPlotly({
+      #x <- cmamDF[iycfBoot$varLabel %in% c(paste("icf2", letters[1:7], sep = "")), ]
+      ##
+      #x <- x[x$estimate != 0, ]
+      ##
+      #ggplot(data = x, aes(x = reorder(varNames, -estimate), y = estimate * 100)) +
+      #  geom_col(color = "#993300", fill = "#993300", alpha = 0.7) +
+        #scale_y_continuous(breaks = seq(from = 0, to = 100, by = 10),
+        #                   limits = c(0, 100)) +
+        #scale_x_discrete(labels = xlabs) +
+      #  labs(x = "", y = "%") +
+      #  coord_flip() +
+      #  themeSettings
+    #})
   })
 }
